@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
-import { darkTheme } from "src/task2/theme";
 import { describe, expect, it } from "vitest";
 import Button from ".";
-import { renderWithTheme } from "src/testUtils/renderWithTheme";
+import { darkTheme } from "../../theme";
+import { renderWithTheme } from "@/src/testUtils/renderWithTheme";
 
 describe("Button component", () => {
   it("renders children text", () => {

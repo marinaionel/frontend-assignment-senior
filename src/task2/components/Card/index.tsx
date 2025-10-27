@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { FC, ReactNode } from "react";
-import { Theme } from "src/task2/theme";
 
 export type CardVariant = "elevated" | "outlined" | "flat";
 
@@ -15,8 +14,8 @@ interface CardProps {
 }
 
 const StyledCard = styled.div<CardProps>`
-  background-color: ${({ theme }) => (theme as Theme).colors.background};
-  color: ${({ theme }) => (theme as Theme).colors.text};
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
   border-radius: ${({ borderRadius }) => borderRadius || "0.5rem"};
   padding: ${({ padding }) => padding || "1rem"};
   width: 100%;
@@ -27,11 +26,10 @@ const StyledCard = styled.div<CardProps>`
   justify-content: space-between;
 
   ${({ variant, theme }) => {
-    const t = theme as Theme;
     switch (variant) {
       case "outlined":
         return `
-          border: 0.1rem solid ${t.colors.secondary}33;
+          border: 0.1rem solid ${theme.colors.secondary}33;
           box-shadow: none;
         `;
       case "flat":
@@ -43,9 +41,9 @@ const StyledCard = styled.div<CardProps>`
       default:
         return `
           border: none;
-          box-shadow: 0 0.25rem 0.75rem ${t.colors.shadow};
+          box-shadow: 0 0.25rem 0.75rem ${theme.colors.shadow};
           &:hover {
-            box-shadow: 0 0.375rem 1rem ${t.colors.shadow};
+            box-shadow: 0 0.375rem 1rem ${theme.colors.shadow};
           }
         `;
     }

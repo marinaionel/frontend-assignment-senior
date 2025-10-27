@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
-import { lightTheme } from "src/task2/theme";
 import { describe, expect, it } from "vitest";
 import TextInput from ".";
-import { renderWithTheme } from "src/testUtils/renderWithTheme";
+import { renderWithTheme } from "@/src/testUtils/renderWithTheme";
+import { lightTheme } from "../../theme";
 
 describe("Text Input Component", () => {
   it("renders a normal input", () => {

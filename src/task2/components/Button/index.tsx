@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { ButtonHTMLAttributes, FC, ReactNode } from "react";
-import { Theme } from "src/task2/theme";
+import "./index.css";
 
 export type ButtonColor = "primary" | "secondary" | "accent";
 export type ButtonVariant = "contained" | "outlined" | "text";
@@ -23,40 +23,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
 }
 
-const getSizeStyles = (size: ButtonProps["size"] = "medium") => {
-  switch (size) {
-    case "small":
-      return `
-        font-size: 0.8rem;
-        padding: 0 0.5rem;
-        height: 2rem;
-        gap: 0.25rem;
-      `;
-    case "large":
-      return `
-        font-size: 1.2rem;
-        padding: 0 1.5rem;
-        height: 3.5rem;
-        gap: 0.75rem;
-      `;
-    case "medium":
-    default:
-      return `
-        font-size: 1rem;
-        padding: 0 1rem;
-        height: 2.5rem;
-        gap: 0.5rem;
-      `;
-  }
-};
-
-const IconWrapper = styled.span`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-`;
-
 const Spinner = styled.span<{ color?: ButtonColor; variant?: ButtonVariant }>`
   display: inline-block;
   border: 2px solid transparent;
@@ -66,9 +32,8 @@ const Spinner = styled.span<{ color?: ButtonColor; variant?: ButtonVariant }>`
   animation: spin 0.8s linear infinite;
 
   ${({ theme, color = "primary", variant = "contained" }) => {
-    const t = theme as Theme;
-    const mainColor = t.colors[color];
-    const textColor = t.colors.text;
+    const mainColor = theme.colors[color];
+    const textColor = theme.colors.text;
     const spinnerColor = variant === "contained" ? textColor : mainColor;
 
     return `
@@ -89,22 +54,9 @@ const Spinner = styled.span<{ color?: ButtonColor; variant?: ButtonVariant }>`
 `;
 
 const StyledButton = styled.button<ButtonProps>`
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s;
-  width: auto;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  gap: 0.5em;
-
   ${({ theme, variant = "contained", color = "primary" }) => {
-    const t = theme as Theme;
-    const mainColor = t.colors[color];
-    const textColor = t.colors.text;
+    const mainColor = theme.colors[color];
+    const textColor = theme.colors.text;
 
     switch (variant) {
       case "outlined":
@@ -138,21 +90,9 @@ const StyledButton = styled.button<ButtonProps>`
     }
   }}
 
-  ${({ size }) => getSizeStyles(size)}
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => (theme as Theme).colors.accent};
+    outline: 2px solid ${({ theme }) => theme.colors.accent};
     outline-offset: 2px;
-  }
-
-  svg {
-    display: inline-block;
-    flex-shrink: 0;
   }
 `;
 
@@ -185,10 +125,11 @@ const Button: FC<ButtonProps> = ({
       variant={variant}
       size={size}
       role={role}
+      className={`btn btn-${size}`}
       {...props}
     >
       {icon && iconPosition === "left" && !isLoading && (
-        <IconWrapper>{icon}</IconWrapper>
+        <span className="icon-wrapper">{icon}</span>
       )}
       {isLoading && iconPosition === "left" && (
         <Spinner
@@ -210,7 +151,7 @@ const Button: FC<ButtonProps> = ({
         />
       )}
       {icon && iconPosition === "right" && !isLoading && (
-        <IconWrapper>{icon}</IconWrapper>
+        <span className="icon-wrapper">{icon}</span>
       )}
     </StyledButton>
   );

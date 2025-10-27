@@ -9,6 +9,6 @@ export default defineConfig({
     include: ["src/**/*.test.{ts,tsx}", "src/**/*.spec.{ts,tsx}"],
   },
   resolve: {
-    alias: [{ find: "src", replacement: path.resolve(__dirname, "./src/") }],
+    alias: [{ find: "@", replacement: path.resolve(__dirname) }],
   },
 });

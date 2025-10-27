@@ -2,11 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
@@ -26,9 +22,10 @@
       "vite-plugin-svgr/client",
       "node",
       "@testing-library/jest-dom"
-    ]
+    ],
+    "paths": {
+      "@/*": ["*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

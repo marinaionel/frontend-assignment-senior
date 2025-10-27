@@ -1,18 +1,7 @@
+import { Theme } from "@emotion/react";
+
 // https://www.realtimecolors.com/
 // Note: in real life the theme would have shades f.e. text 100 to 900
-export interface Theme {
-  colors: {
-    text: string;
-    background: string;
-    primary: string;
-    secondary: string;
-    accent: string;
-    shadow: string;
-    border: string;
-    error: string;
-  };
-}
-
 export const lightTheme: Theme = {
   colors: {
     text: "#1a1a1a",
@@ -23,6 +12,7 @@ export const lightTheme: Theme = {
     shadow: "rgba(0, 0, 0, 0.1)",
     border: "#e2e8f0",
     error: "#dc2626",
+    success: "#16a34a",
   },
 };
 
@@ -36,5 +26,6 @@ export const darkTheme: Theme = {
     shadow: "rgba(0, 0, 0, 0.3)",
     border: "#334155",
     error: "#f87171",
+    success: "#22c55e",
   },
 };

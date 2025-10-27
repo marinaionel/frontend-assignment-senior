@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Card from ".";
 import Button from "../Button";
-import { renderWithTheme } from "src/testUtils/renderWithTheme";
+import { renderWithTheme } from "@/src/testUtils/renderWithTheme";
 
 describe("Card Component", () => {
   it("renders children content correctly", () => {

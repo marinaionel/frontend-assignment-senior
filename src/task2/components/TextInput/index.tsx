@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { FC, InputHTMLAttributes } from "react";
-import { Theme } from "src/task2/theme";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: boolean;
@@ -13,20 +12,19 @@ const StyledInput = styled.input<TextInputProps>`
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   border: 0.1rem solid
-    ${({ theme, error }) =>
-      error ? (theme as Theme).colors.error : (theme as Theme).colors.border};
+    ${({ theme, error }) => (error ? theme.colors.error : theme.colors.border)};
   border-radius: 0.5rem;
   outline: none;
   transition: all 0.2s;
-  background-color: ${({ theme }) => (theme as Theme).colors.background};
-  color: ${({ theme }) => (theme as Theme).colors.text};
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
 
   &:focus {
     border-color: ${({ theme, error }) =>
-      error ? (theme as Theme).colors.error : (theme as Theme).colors.primary};
+      error ? theme.colors.error : theme.colors.primary};
     box-shadow: 0 0 0.25rem
       ${({ theme, error }) =>
-        error ? (theme as Theme).colors.error : (theme as Theme).colors.shadow};
+        error ? theme.colors.error : theme.colors.shadow};
   }
 
   &:disabled {
@@ -36,7 +34,8 @@ const StyledInput = styled.input<TextInputProps>`
 `;
 
 const TextInput: FC<TextInputProps> = ({ error = false, ...props }) => {
-  return <StyledInput error={error} {...props} />;
+  const inputProps = { ...props };
+  return <StyledInput error={error} {...inputProps} />;
 };
 
 export default TextInput;
